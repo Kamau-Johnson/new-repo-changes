@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EduGrade | Teacher Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login and sign_up.css') }}" />
+</head>
+<body>
+    <div class="container">
+        <h1>EduGrade +</h1>
+        <p class="subtitle">Track. Grade. Grow.</p>
+
+        <h2>Teacher Login</h2>
+
+        <form id="login-form" method="post" action="{{ url_for('login') }}" autocomplete="off">
+            
+            <div>
+                <label for="access_code">Access Code</label>
+                <input type="text" id="access_code" name="access_code" required placeholder="Enter your access code" />
+            </div>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required placeholder="Enter your password" />
+
+            <button type="submit">Login</button>
+
+            <div class="signup-link">
+                <!-- 
+                ## THIS IS THE CHANGE ##
+                The link now goes directly to the signup page.
+                The 'onclick' event and the JavaScript prompt have been removed.
+                -->
+                <a href="{{ url_for('user_signup') }}">Create an account</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- The entire <script> block for the prompt has been removed as it is no longer needed. -->
+
+</body>
+</html>

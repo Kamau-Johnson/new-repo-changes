@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EduGrade | Teachers Sign-Up</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='login and sign_up.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <h1>EduGrade +</h1>
+    <p class="subtitle">Track. Grade. Grow.</p>
+    <h2>Teacher Sign-Up</h2>
+    
+    <form action="{{ url_for('user_signup') }}" method="post" autocomplete="off">
+      <label for="access_code">Access Code</label>
+      <input type="text" id="access_code" name="access_code" required placeholder="Create an Access Code" />
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required placeholder="Enter password" />
+      <label for="confirm_password">Re-enter Password</label>
+      <input type="password" id="confirm_password" name="confirm_password" required placeholder="Re-enter password" />
+      <button type="submit">Sign Up</button>
+      <div class="signup-link">
+        <a href="{{ url_for('login') }}">Already have an account?</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

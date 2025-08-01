@@ -1,0 +1,199 @@
+/* static/teacher_dashboard.css */
+
+/* --- Basic Setup & Fonts --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif; /* Matching your login page font */
+    color: #333; /* Matching your login page color */
+    /* This points to the image you saved in the 'static' folder.
+       Make sure the image name is correct. I am using 'Login.webp'. */
+    background-image: url('teacher_dashboard.webp'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* --- Main Layout --- */
+.dashboard-container {
+    display: flex;
+    width: 100%;
+}
+
+/* --- Sidebar Styling (Restored to solid white background) --- */
+.sidebar {
+    width: 260px;
+    background-color: #ffffff; /* KEY CHANGE: Restored to solid white */
+    border-right: 1px solid #dee2e6; /* Restored solid border */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* A subtle shadow for the solid sidebar */
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    z-index: 1000; /* Ensure sidebar is on top */
+}
+
+/* (The rest of the sidebar styles are now on a solid background) */
+.sidebar-header { padding: 20px; border-bottom: 1px solid #e9ecef; display: flex; align-items: center; }
+.logo-container { display: flex; align-items: center; }
+.logo-icon { font-size: 32px; color: #2980b9; margin-right: 12px; }
+.logo-text h1 { font-size: 20px; font-weight: 700; color: #2c3e50; margin: 0; }
+.logo-text p { font-size: 12px; color: #7f8c8d; margin: 0; }
+.sidebar-content { flex-grow: 1; padding: 15px 0; }
+.nav-items .management-label { padding: 15px 20px 5px; font-size: 11px; font-weight: 700; color: #34495e; text-transform: uppercase; letter-spacing: 0.5px; }
+.nav-items .nav-item { display: flex; align-items: center; padding: 14px 20px; margin: 5px 10px; color: #34495e; text-decoration: none; font-weight: 600; border-radius: 6px; transition: background-color 0.2s, color 0.2s; cursor: pointer; }
+.nav-items .nav-item i { margin-right: 15px; width: 20px; font-size: 16px; text-align: center; }
+.nav-items .nav-item.active { background-color: #2980b9; color: white; }
+.nav-items .nav-item:not(.active):hover { background-color: #f1f3f5; }
+.sidebar-footer { padding: 20px; border-top: 1px solid #e9ecef; }
+.user-info { display: flex; align-items: center; gap: 10px; font-weight: 500; margin-bottom: 15px; }
+.logout-link a { color: #c0392b; text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+
+
+/* --- Main Content (The Floating Card in the Middle) --- */
+.main-content {
+    flex-grow: 1;
+    margin-left: 260px; /* Space for the sidebar */
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* KEY CHANGE: This content wrapper is styled EXACTLY like your login form */
+.content-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px 30px;
+    /* This is the frosted glass effect from your login page */
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Styling for elements INSIDE the card --- */
+.content-section { display: none; }
+.content-section.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* The content blocks inside the main card are now solid white */
+.welcome-card, .info-card, .data-container {
+    background-color: #ffffff; /* Solid white background for readability */
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+
+.welcome-card {
+    color: #34495e;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+.welcome-card h1 { color: #2980b9; font-size: 28px; font-weight: 700; margin: 0; }
+.welcome-card p { font-size: 16px; margin-top: 5px; color: #7f8c8d; }
+
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+.info-card {
+    padding: 25px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 0; /* Remove margin from info-cards to avoid double margin */
+}
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+.info-card h3 { font-size: 14px; font-weight: 600; color: #34495e; text-transform: uppercase; letter-spacing: 0.5px; }
+.info-card .number-box { font-size: 42px; font-weight: 700; color: #2c3e50; margin: 10px 0; }
+.info-card p { color: #7f8c8d; font-size: 14px; }
+
+/* Styles for the other sections */
+.content-header {
+    background-color: #ffffff;
+    padding: 25px 30px;
+    margin-bottom: 0;
+    border-bottom: 1px solid #e9ecef;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+.content-header h2 { font-size: 24px; font-weight: 700; display: flex; align-items: center; gap: 12px; color: #2c3e50; }
+.content-header p { font-size: 15px; color: #7f8c8d; margin-top: 5px; }
+.data-container { 
+    padding: 30px; 
+    min-height: 300px; 
+    margin-bottom: 30px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+/* Connect headers to containers nicely */
+#student-list-container, #marks-list-view, #add-student-view, #marks-entry-view {
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+#student-list-container .data-container, #marks-list-view .data-container {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    box-shadow: none;
+    margin-bottom: 0;
+}
+
+
+/* ===== NEW STYLES START HERE ===== */
+
+/* --- Tables, Forms, and Controls (Shared Styles) --- */
+.table-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; flex-wrap: wrap; gap: 15px; }
+.search-container { position: relative; }
+.search-input { height: 40px; padding: 0 15px 0 40px; border: 1px solid #ccc; border-radius: 6px; width: 300px; }
+.search-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #aaa; }
+.btn { padding: 10px 20px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: background-color 0.2s; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
+.btn-primary { background-color: #2980b9; color: white; }
+.btn-primary:hover { background-color: #2c3e50; }
+.btn-secondary { background-color: #6c757d; color: white; }
+.btn-danger { background-color: #c0392b; color: white; padding: 6px 10px; }
+.btn-success { background-color: #27ae60; color: white; }
+
+.table-responsive { overflow-x: auto; }
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th, .data-table td { padding: 15px; text-align: left; border-bottom: 1px solid #e9ecef; }
+.data-table th { font-size: 12px; font-weight: 600; color: #34495e; text-transform: uppercase; background-color: #f8f9fa; }
+.data-table tbody tr:hover { background-color: #f1f3f5; }
+
+/* Form Styles */
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.form-group { display: flex; flex-direction: column; }
+.form-group label { font-weight: 500; margin-bottom: 8px; font-size: 14px; }
+.form-group input, .form-group select, .form-group textarea { padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; }
+.form-group textarea { resize: vertical; }
+.form-actions { margin-top: 30px; display: flex; gap: 10px; justify-content: flex-end; padding-top: 20px; border-top: 1px solid #e9ecef; }
+
+/* Message Box */
+.message-box { position: fixed; top: 20px; right: 20px; padding: 15px 25px; background-color: #2ecc71; color: white; border-radius: 8px; z-index: 9999; transform: translateY(-100px); opacity: 0; transition: transform 0.4s, opacity 0.4s; display: flex; align-items: center; gap: 10px; font-weight: 500; }
+.message-box.show { transform: translateY(0); opacity: 1; }
+.message-box.error { background-color: #e74c3c; }
+
+/* Report Card Specific Styles */
+#reportCardContainer .placeholder-text { text-align: center; color: #999; padding: 50px 0; }
+#reportCardContainer .placeholder-text i { font-size: 4rem; margin-bottom: 1rem; }
+.report-card { border: 1px solid #ccc; padding: 2rem; }
+.report-header { text-align: center; border-bottom: 2px solid #333; padding-bottom: 1rem; margin-bottom: 1.5rem; }
+.student-details { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+.summary-section { margin-top: 2rem; }
+.summary-grid { display: grid; gap: 1rem; }
+.summary-box { border: 1px solid #ddd; padding: 1rem; text-align: center; border-radius: 5px; }
+.report-footer { display: flex; justify-content: space-between; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #ccc; }
